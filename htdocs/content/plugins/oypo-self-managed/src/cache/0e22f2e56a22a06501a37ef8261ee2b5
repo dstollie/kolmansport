@@ -1,0 +1,23 @@
+<label for="myplugin_new_field">
+	<p>
+		<strong>Zijn de foto's op deze pagina bestelbaar?</strong>
+	</p>
+	<?php echo wp_nonce_field($nonce_field_name, $nonce_field_name); ?>
+
+
+	<?php if(isset($description)): ?>
+		<p><?php echo e($description); ?></p>
+	<?php endif; ?>
+
+	<label for="<?php echo e(prefix('enabled_true')); ?>">
+		<input type="radio" id="<?php echo e(prefix('enabled_true')); ?>" name="<?php echo e($oypo_enabled_field_name); ?>" <?php echo e(checked($enabled, true)); ?> value="1" />
+		<span><?php echo e(esc_attr( 'Ja', 'wp_admin_style' )); ?></span>
+	</label>
+
+	<br/>
+
+	<label for="<?php echo e(prefix('enabled_false')); ?>">
+		<input type="radio" id="<?php echo e(prefix('enabled_false')); ?>" name="<?php echo e($oypo_enabled_field_name); ?>" <?php echo e(checked($enabled, false)); ?> value="0" />
+		<span><?php echo e(esc_attr( 'Nee', 'wp_admin_style' )); ?></span>
+	</label>
+</label>

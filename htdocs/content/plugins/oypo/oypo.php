@@ -33,6 +33,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 define('OYPO_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 
+// COMPOSER
+require_once( 'vendor/autoload.php' );
+
 // CONFIG
 require_once dirname( __FILE__ ) . '/config.php';
 

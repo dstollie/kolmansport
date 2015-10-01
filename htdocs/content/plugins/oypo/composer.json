@@ -1,10 +1,11 @@
 {
-  "name": "dstollie/oypo-self-managed",
+  "name": "dstollie/oypo",
   "description": "Use this package if you want to you oypo with in a self managed way",
   "type": "wordpress-plugin",
   "require": {
-    "duncan3dc/blade": "dev-master",
-    "composer/installers": "dev-master"
+    "composer/installers": "dev-master",
+    "guzzlehttp/guzzle": "6.*",
+    "imangazaliev/didom": "1.3"
   },
   "authors": [
     {

@@ -1,0 +1,50 @@
+<style type='text/css'>
+    #<?php echo e($selector); ?> {
+        margin: auto;
+    }
+    #<?php echo e($selector); ?> .gallery-item {
+        float: <?php echo e($float); ?>;
+        margin-top: 10px;
+        text-align: center;
+        width: <?php echo e($itemwidth); ?>;
+    }
+    #<?php echo e($selector); ?> img {
+        border: 2px solid #cfcfcf;
+    }
+    #<?php echo e($selector); ?> .gallery-caption {
+        margin-left: 0;
+    }
+</style>
+<!-- see gallery_shortcode() in wp-includes/media.php -->
+<div id='<?php echo e($selector); ?>' class='gallery galleryid-<?php echo e($id); ?>'>
+
+    <?php foreach($attachments as $attachment): ?>
+
+        <<?php echo e($itemtag); ?> class='gallery-item'>
+            <<?php echo e($icontag); ?> class='gallery-icon'>
+                <?php echo $attachment['link']; ?>
+
+            </<?php echo e($icontag); ?>>
+            <<?php echo e($captiontag); ?> class='gallery-caption'>
+
+                <?php echo $attachment['postExcerpt']; ?>
+
+
+<script language="JavaScript" src="http://www.oypo.nl/pixxer/api/orderbutton.asp?
+		foto=<?php echo $attachment['thumbnailPhoto']; ?>&
+		thumb=<?php echo $attachment['thumbnailPhoto']; ?>&
+		profielid=<?php echo $profielId; ?>&
+        buttonadd=http://www.kijk.us/selectionadd.gif&
+        buttondel=http://www.kijk.us/selectiondel.gif"></script>
+
+            </<?php echo e($captiontag); ?>>
+
+        </<?php echo e($itemtag); ?>>
+
+        <?php if($attachment['showBr']): ?>
+            <br style='clear: both;' />
+        <?php endif; ?>
+
+    <?php endforeach; ?>
+
+</div>

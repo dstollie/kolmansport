@@ -24,55 +24,55 @@ function oypo_valid_vars(){
 			$oypo_errors[] = 'Het adres van het stylesheet is niet volledig. Voer de volledige url in (voorbeeld: http://www.domeinnaam.nl/oypo.css)';
 		}
 	}
-	
+
 	if(isset($_POST['oypo_submit'])){
-	
+
 		echo '<div id="setting-error-settings_updated" class="updated settings-error" style="margin-top: 10px;">';
-		
-		if(sizeof($oypo_errors)==0){ 
-			echo "<p><strong>Instellingen opgeslagen.</strong></p>"; 
+
+		if(sizeof($oypo_errors)==0){
+			echo "<p><strong>Instellingen opgeslagen.</strong></p>";
 		}else{
-			echo "<p>De volgende fouten zijn gevonden:</p>"; 
-			foreach($oypo_errors as $error){ echo '<p><strong>- ' . $error . '</strong></p>'; } 
+			echo "<p>De volgende fouten zijn gevonden:</p>";
+			foreach($oypo_errors as $error){ echo '<p><strong>- ' . $error . '</strong></p>'; }
 		}
-		
+
 		echo '</div>';
 	}
-	
+
 }
-	
+
 
 function oypo_generate_preview(){
 
 	global $oypo_settings, $oypo_errors;
-	
+
 	if(sizeof($oypo_errors) == 0){
-	
+
 		$code  = '<script type="text/javascript">';
 		$code .= 'delete transparency;';
 		$code .= 'var mode=\'user\';';
 		$code .= 'var userid=\''. $oypo_settings['userid'] . '\';';
-		
+
 		// TRANSPARENCY
 		if($oypo_settings['v1_trans'] == "on"){ $code .= 'var transparency=1;'; }
 
 		// Whitelabel verzending
 		if ($oypo_settings['wl_on'] == "on" && !empty($oypo_settings['wl_id'])){ $code .= 'var wl=\'' . $oypo_settings['wl_id'] . '\';'; }
-	
+
 		// Kleuren
 		if ($oypo_settings['kleuren'] == "stylesheet"){ $code .= 'var css=\'' . $oypo_settings['stylesheet'] . '\';'; }
-		if ($oypo_settings['kleuren'] == "custom"){ 
-			for($i=1;$i<7;$i++){ 
-				$code .= 'var kleur'. $i .'=\'' . $oypo_settings['v' . $i] . '\';'; 
+		if ($oypo_settings['kleuren'] == "custom"){
+			for($i=1;$i<7;$i++){
+				$code .= 'var kleur'. $i .'=\'' . $oypo_settings['v' . $i] . '\';';
 			}
 		}
-	
+
 		$code .= '</script>';
 		$code .= '<script type="text/javascript" src="//www.oypo.nl/pixxer/api/templates/1207a.js"></script>';
 		$code .= '<div id="pixxer_iframe"></div>';
-		
+
 		echo $code;
-		
+
 	}else{
 		echo '<span class="description">- Voorbeeld kan niet gemaakt worden. Vul alle velden correct in.</span>';
 	}
@@ -82,9 +82,10 @@ function oypo_save_settings(){
 
 	// SET GLOBALS
 	global $oypo_settings;
-	
+
 	// SAVE CHANGES
 	if(isset($_POST['oypo_userid'])){ update_option('oypo-userid', $_POST['oypo_userid']); }
+	if(isset($_POST['oypo_password'])){ update_option('oypo-password', $_POST['oypo_password']); }
 	if(isset($_POST['oypo_wl_on'])){ update_option('oypo-wl-on', $_POST['oypo_wl_on']); }
 	if(isset($_POST['oypo_wl_id'])){ update_option('oypo-wl-id', $_POST['oypo_wl_id']); }
 	if(isset($_POST['oypo_kleuren'])){ update_option('oypo-kleuren', $_POST['oypo_kleuren']); }
@@ -94,11 +95,12 @@ function oypo_save_settings(){
 	if(isset($_POST['oypo_v4'])){ update_option('oypo-v4', $_POST['oypo_v4']); }
 	if(isset($_POST['oypo_v5'])){ update_option('oypo-v5', $_POST['oypo_v5']); }
 	if(isset($_POST['oypo_v6'])){ update_option('oypo-v6', $_POST['oypo_v6']); }
-	if(isset($_POST['oypo_v1_trans'])){ update_option('oypo-v1-trans', $_POST['oypo_v1_trans']); }else{ update_option('oypo-v1-trans', ''); } 
+	if(isset($_POST['oypo_v1_trans'])){ update_option('oypo-v1-trans', $_POST['oypo_v1_trans']); }else{ update_option('oypo-v1-trans', ''); }
 	if(isset($_POST['oypo_stylesheet'])){ update_option('oypo-stylesheet', $_POST['oypo_stylesheet']); }
-		
+
 	// GET VALUES
 	$oypo_settings['userid'] = get_option('oypo-userid');
+	$oypo_settings['password'] = get_option('oypo-password');
 	$oypo_settings['wl_on'] = get_option('oypo-wl-on');
 	$oypo_settings['wl_id'] = get_option('oypo-wl-id');
 	$oypo_settings['kleuren'] = get_option('oypo-kleuren');
@@ -118,19 +120,19 @@ function oypo_settings_page() {
 
 	// IMPORT VARS
 	global $oypo_settings, $oypo_errors, $wp_version;
-	
+
 	// ERRORS
 	oypo_valid_vars();
-	
+
 	// VARS FIXES
 	$var_array = array('wl_on_checked', 'wl_off_checked', 'wl_style', 'kleuren_custom_checked', 'kleuren_custom_style', 'kleuren_stylesheet_checked', 'kleuren_stylesheet_style', 'kleuren_standaard_checked', 'v1_trans_checked');
 	foreach($var_array as $var){ $oypo_settings[$var] = ''; }
-	
+
 	// RADIO FIXES
 	if($oypo_settings['wl_on'] == "on"){
-		$oypo_settings['wl_on_checked'] = 'checked'; 
+		$oypo_settings['wl_on_checked'] = 'checked';
 	}else{
-		$oypo_settings['wl_off_checked'] = 'checked'; 
+		$oypo_settings['wl_off_checked'] = 'checked';
 		$oypo_settings['wl_style'] = 'display: none;';
 	}
 	if($oypo_settings['kleuren'] == "custom"){
@@ -145,10 +147,10 @@ function oypo_settings_page() {
 	if($oypo_settings['v1_trans'] == "on"){
 		$oypo_settings['v1_trans_checked'] = 'checked';
 	}
-	
+
 	// CSS VERSION FIXES
 	$wrap_padding = ($wp_version > 3.7) ? '0 0 15px 0' : '0 0 15px 15px';
-	
+
 	?>
 	
 	<form method="post">
@@ -175,6 +177,7 @@ function oypo_settings_page() {
 							
 							<table class="wp-list-table widefat fixed users" cellspacing="0" border="0" style="border-bottom: 0px;">
 								<tr class="alternate"><td><b>Gebruikersnaam van uw Oypo-account:</b></td><td><div class="option"><input type="text" name="oypo_userid" id="oypo_userid" value="<?php print($oypo_settings['userid']); ?>" style="width: 130px;"></div></td><td><div class="help" onClick="showHelp(this, 1)"></div></td></tr>
+								<tr class="alternate"><td><b>Wachtwoord van uw Oypo-account:</b></td><td><div class="option"><input type="text" name="oypo_password" id="oypo_password" value="<?php print($oypo_settings['password']); ?>" style="width: 130px;"></div></td><td><div class="help" onClick="showHelp(this, 13)"></div></td></tr>
 								<tr class="alternate"><td><b>White label verzending:</b></td><td><div class="option"><input type="radio" id="wlcheck0" name="oypo_wl_on" value="" <?php print($oypo_settings['wl_off_checked']); ?> onClick="styleRef('wl1').display='none';"><label for="wlcheck0">nee</label>&nbsp;&nbsp;<input type="radio" id="wlcheck1" name="oypo_wl_on" value="on" <?php print($oypo_settings['wl_on_checked']); ?> onClick="styleRef('wl1').display='table-row';"><label for="wlcheck1">ja</label></div></td><td><div class="help" onClick="showHelp(this, 8)"></div></td></tr>
 								<tr id="wl1" class="alternate" style="<?php print($oypo_settings['wl_style']); ?>"><td><b>ID van het white label:</b></td><td><div class="label"></div><div class="option"><input type="text" name="oypo_wl_id" id="oypo_wl_id" value="<?php print($oypo_settings['wl_id']); ?>" style="width: 100px;" /></div></td><td><div class="help" onClick="showHelp(this, 9)"></div></td></tr>	
 							</table>

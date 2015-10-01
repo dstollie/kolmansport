@@ -1,14 +1,18 @@
 {
-    "name": "dstollie/oypo-self-managed",
-    "description": "Use this package if you want to you oypo with in a self managed way",
-    "type": "wordpress-plugin",
-    "require": {
-        "composer/installers": "dev-master"
-    },
-    "authors": [
-        {
-            "name": "Dennis Stolmeijer",
-            "email": "dstollie@hotmail.com"
-        }
-    ]
+  "name": "dstollie/oypo-self-managed",
+  "description": "Use this package if you want to you oypo with in a self managed way",
+  "type": "wordpress-plugin",
+  "require": {
+    "duncan3dc/blade": "dev-master",
+    "composer/installers": "dev-master"
+  },
+  "authors": [
+    {
+      "name": "Dennis Stolmeijer",
+      "email": "dstollie@hotmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"Dstollie\\Oypo\\": "src/"}
+  }
 }

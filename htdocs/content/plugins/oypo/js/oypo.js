@@ -15,7 +15,7 @@ helptekst[9]='<h2>ID van het white label</h2>Vul in dit veld de naam van de whit
 helptekst[10]='<h2>Layout</h2>U kunt kiezen uit de volgende navigatiemogelijheden:<br /><br /><b>Mappen-overzicht</b><br />De bezoekers van uw website starten met het overzicht van de laatst toegevoegde fotomappen en een kalender met de datums waarop foto\'s zijn gemaakt.<br /><br /><b>Specifieke fotomap</b><br />De bezoekers van uw website navigeren door middel van de mappennavigatie door de boomstructuur van uw fotomappen.<br /><br /><b>Inlogkaartjes</b><br />Bezoekers kunnen niet navigeren tussen fotomappen, maar gebruiken de code en het wachtwoord zoals op de inlogkaartjes staan. Deze optie wordt met name voor schoolfotografie gebruikt.<br><!--Lees meer over het <a href="#" title="Schoolfotografie - inlogkaartjes">gebruik van inlogkaartjes</a>-->'
 helptekst[11]='<h2>Kleurenschema</h2>Kies voor het standaard kleurenschema van Oypo (met witte achtergrond), of kies uw eigen kleuren bij \'Zelf aanpassen\'. Als u volledige vrijheid wilt hebben, dan kunt u ook uw eigen stylesheet gebruiken door de url in te vullen van de locatie waar uw eigen stylesheet-bestand staat.'
 helptekst[12]='<h2>Transparante achtergrond</h2>Indien aangevinkt wordt de achtergrond van de implementatie transparant. Hierdoor zal de de achtergrond van uw eigen website zichtbaar zijn.'
-
+helptekst[13]='<h2>Wachtwoord</h2>Vul hier het wachtwoord van uw account bij Oypo in. Met het wachtwoord kunnen de fotomappen die u heeft bij Oypo, opgehaald worden.'
 //$.ajaxSetup ({ cache: false });     // Disable caching of AJAX responses
 
 var thishelp=0;
