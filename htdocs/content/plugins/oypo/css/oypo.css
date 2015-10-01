@@ -1,0 +1,72 @@
+.block {
+	background: #fafafa;
+	padding: 10px;
+	margin-right: 10px;
+	border: 1px solid #989898;
+}
+#code, #voorbeeld { display: none; }
+
+h1,h2{ margin: 0; padding: 0; }
+h1 { font-size: 18px; }
+h2 { font-size: 14px; padding:5px 0px;}
+h3 { font-size: 12px; padding:5px 0px;}
+p { margin: 0; padding: 10px; }
+.help { 
+	float: right;
+	background: url('../images/icon_help.gif'); 
+	cursor: pointer;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom:7px;
+	width: 13px;
+	height: 13px;
+	line-height: 25px;
+}
+.label { 
+	clear: left;
+	width: 200px;
+	margin-right: 10px;
+	font-weight: bold;
+}
+
+.option { 
+	width: 160px;
+}
+.kader, .block, .label, .option, .verloop { 
+	float: left;
+	line-height: 25px;
+}
+label {
+	cursor:pointer;
+}
+#htmlcode {
+	font-family: courier-new,courier;
+	font-size:12px;
+}
+input[type="radio"]{ 
+	position: relative; 
+	margin-right:5px;
+}
+
+input[type="checkbox"]{ 
+	position: relative; 
+	top: -4px; 
+	margin-right:5px;
+}
+
+#help {
+	position:absolute;
+	left:550px;
+	top:390px;
+	width:300px;
+	background: #fafafa;
+	border:1px solid #989898;
+	display:none;
+}
+#helptxt {margin:0 10px 10px 10px; }
+#nn1, #nn2, #fr1, #fr2, #fr3, #fr4, #sk1, #sk2, #vb1, #vb2 {display:none}
+/* #nn1, #nn2, #wl1, #wl2, #fr1, #fr2, #fr3, #fr4, #sk1, #sk2, #vb1, #vb2 { visibility:hidden;} */
+.vakje {width:20px;height:20px;overflow:hidden;border:1px solid #999;cursor:pointer; float: left; margin-right: 10px; }
+
+
+tr.alternate td { white-space: nowrap; }
